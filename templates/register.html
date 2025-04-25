@@ -1,10 +1,18 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
+
 {% block content %}
-<h2>Регистрация</h2>
-<form method="post">
-  Логин: <input name="username"><br>
-  Пароль: <input name="password" type="password"><br>
-  <button type="submit">Зарегистрироваться</button>
+<h1>Регистрация</h1>
+<form method="POST">
+    {{ form.hidden_tag() }}
+    <label for="username">Имя пользователя:</label>
+    {{ form.username }}
+    <br>
+    <label for="password">Пароль:</label>
+    {{ form.password }}
+    <br>
+    <label for="confirm_password">Подтверждение пароля:</label>
+    {{ form.confirm_password }}
+    <br>
+    <button type="submit">Зарегистрироваться</button>
 </form>
-<a href="{{ url_for('auth.login') }}">Уже есть аккаунт?</a>
 {% endblock %}

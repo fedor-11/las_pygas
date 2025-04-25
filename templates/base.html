@@ -1,15 +1,32 @@
-<!doctype html>
-<html lang="ru">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Казино</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Casino</title>
 </head>
 <body>
-  {% with messages = get_flashed_messages() %}
-    {% if messages %}
-      <ul>{% for m in messages %}<li>{{ m }}</li>{% endfor %}</ul>
-    {% endif %}
-  {% endwith %}
-  {% block content %}{% endblock %}
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('auth.login') }}">Login</a></li>
+            <li><a href="{{ url_for('auth.register') }}">Register</a></li>
+            {% if current_user.is_authenticated %}
+                <li><a href="{{ url_for('profile.profile') }}">Profile</a></li>
+                <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    
+    {% block content %}{% endblock %}
 </body>
 </html>

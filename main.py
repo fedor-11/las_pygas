@@ -26,8 +26,8 @@ def create_app():
         db.create_all()
 
     # Регистрируем blueprints
-    app.register_blueprint(auth_bp)
-    app.register_blueprint(profile_bp)
+    app.register_blueprint(auth_bp, url_prefix='/auth')
+    app.register_blueprint(profile_bp, url_prefix='/profile')
 
     return app
 
